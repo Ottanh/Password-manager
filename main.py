@@ -30,7 +30,7 @@ def main():
         if(command == 'get'):
             print_all(content)
         elif(command == 'add'):
-            plaintext = add(content)
+            content = add(content)
         elif(command == 'save'):
             bcontent = str(content).encode('utf-8')
             cipher = crypto.encrypt(bcontent, secret)
@@ -49,6 +49,8 @@ def add(content):
     key = input('')
     value = input('')
     content.update({key: value})
+
+    return content
 
 
 def login(content, file):
