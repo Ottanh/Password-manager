@@ -65,16 +65,18 @@ def remove(content):
     return content
 
 def login(content, file):
+    try:
+        secret = stdiomask.getpass('Password: ').encode('utf-8')
+        #read and decrypt
+        ciphertext = files.read(file)
+        byte_str = crypto.decrypt(secret, ciphertext)
+        #bytes to dictionary
+        dict_str = byte_str.decode('utf-8')
+        content = ast.literal_eval(dict_str)
 
-    secret = stdiomask.getpass('Password: ').encode('utf-8')
-
-    #read and decrypt
-    ciphertext = files.read(file)
-    byte_str = crypto.decrypt(secret, ciphertext)
-
-    #bytes to dictionary
-    dict_str = byte_str.decode('utf-8')
-    content = ast.literal_eval(dict_str)
+    except ValueError:
+        print("Error: Wrong password. Please try again\n")
+        main()
 
     return secret, content
 
