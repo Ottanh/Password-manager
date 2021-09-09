@@ -11,12 +11,12 @@ def main():
 
     #Edit file content in an editor
     assert file != None
-    message = click.edit(file.get_content())
+    content = click.edit(file.get_content())
 
-    if message == None:
+    if content == None:
         print('No changes were saved \n')
     else:
-        file.set_content(message)
+        file.set_content(content)
         print('Saved \n')
 
     main()
